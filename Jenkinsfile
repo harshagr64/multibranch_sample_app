@@ -2,10 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout Code') {
+        stage('hello') {
             steps {
-                git 'https://github.com/harshagr64/django-todo'
+                sh "echo hello"
             }
         }
+	stage('cat Readme') {
+	    when {
+	      branch "fix-*"
+	    }
+	    steps {
+	        sh '''
+		  cat Readme.md
+		'''	
+	    }
+	}
     }
 }
